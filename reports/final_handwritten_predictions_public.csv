@@ -1,0 +1,83 @@
+id,category,priority,type,alt_label,split,filled,pred,action,conf,pred_priority
+tech-short-1,Technical Support,Medium,short,,test,False,Technical Support,auto_route,0.9994391000996962,High
+tech-short-2,Technical Support,Medium,short,,test,False,Account & Login,route_with_flag,0.6208275341972592,Low
+tech-short-3,Technical Support,Medium,short,,test,False,Account & Login,auto_route,0.999982908211908,Medium
+tech-messy-2,Technical Support,Medium,messy,,test,False,Technical Support,auto_route,0.9993167453170024,Medium
+tech-messy-3,Technical Support,High,messy,,test,False,Technical Support,auto_route,0.983419750569133,High
+tech-borderline-1,Technical Support,High,borderline,Payment Issue,test,False,Payment Issue,auto_route,0.9402496886565764,High
+tech-borderline-2,Technical Support,Medium,borderline,Account & Login,test,False,Account & Login,auto_route,0.9715636703860748,High
+tech-novel-2,Technical Support,Medium,novel,,test,False,Technical Support,auto_route,0.9991338443363804,Medium
+paym-short-1,Payment Issue,High,short,,test,False,Payment Issue,auto_route,0.9281870129085784,High
+paym-short-2,Payment Issue,Medium,short,,test,False,Payment Issue,auto_route,0.9859128931269838,Low
+paym-short-3,Payment Issue,Medium,short,,test,False,Payment Issue,auto_route,0.9873449483499336,Medium
+paym-messy-2,Payment Issue,High,messy,,test,False,Payment Issue,auto_route,0.9977727066437132,High
+paym-messy-3,Payment Issue,High,messy,,test,False,Payment Issue,auto_route,0.999809998840654,Medium
+paym-borderline-1,Payment Issue,High,borderline,Refund Request,test,False,Payment Issue,auto_route,0.999656961120708,High
+paym-borderline-2,Payment Issue,Medium,borderline,Refund Request,test,False,Refund Request,auto_route,0.936521564383563,Medium
+paym-novel-2,Payment Issue,High,novel,,test,False,Payment Issue,route_with_flag,0.7284982590552062,High
+acco-short-1,Account & Login,Medium,short,,test,False,Account & Login,auto_route,0.999991170673625,High
+acco-short-2,Account & Login,Low,short,,test,False,Account & Login,auto_route,0.9982180642982666,Low
+acco-short-3,Account & Login,Medium,short,,test,False,Account & Login,auto_route,0.9986710743981244,Medium
+acco-messy-2,Account & Login,Medium,messy,,test,False,Account & Login,auto_route,0.999996222345002,Medium
+acco-messy-3,Account & Login,High,messy,,test,False,Account & Login,auto_route,0.9994604611343968,High
+acco-borderline-1,Account & Login,Medium,borderline,Technical Support,test,False,Account & Login,auto_route,0.9972129552566936,High
+acco-borderline-2,Account & Login,High,borderline,Payment Issue,test,False,Payment Issue,route_with_flag,0.7039833991099557,High
+acco-novel-2,Account & Login,Medium,novel,,test,False,Account & Login,auto_route,0.9995151149541808,Medium
+sale-short-1,Sales Inquiry,Low,short,,test,False,Sales Inquiry,auto_route,0.9996011859385427,Low
+sale-short-2,Sales Inquiry,Low,short,,test,False,Sales Inquiry,auto_route,0.9888102510238116,Medium
+sale-short-3,Sales Inquiry,Medium,short,,test,False,Sales Inquiry,auto_route,0.9484741312190916,Low
+sale-messy-2,Sales Inquiry,Medium,messy,,test,False,Sales Inquiry,auto_route,0.999891675572932,Medium
+sale-messy-3,Sales Inquiry,High,messy,,test,False,Sales Inquiry,auto_route,0.9934177760967534,Low
+sale-borderline-1,Sales Inquiry,Medium,borderline,Payment Issue,test,False,Sales Inquiry,auto_route,0.992764585223604,Low
+sale-borderline-2,Sales Inquiry,Medium,borderline,Account & Login,test,False,Unknown,manual_review,0.4339338610727626,NA
+sale-novel-2,Sales Inquiry,Low,novel,,test,False,Unknown,manual_review,0.5463584124724328,NA
+comp-short-1,Complaint,Medium,short,,test,False,Complaint,route_with_flag,0.6710111517303077,Medium
+comp-short-2,Complaint,Medium,short,,test,False,Refund Request,route_with_flag,0.8379792499686891,Medium
+comp-short-3,Complaint,Medium,short,,test,False,Complaint,auto_route,0.9463191983319672,High
+comp-messy-2,Complaint,High,messy,,test,False,Complaint,auto_route,0.9955106909519132,Medium
+comp-messy-3,Complaint,High,messy,,test,False,Complaint,auto_route,0.8657022830990522,High
+comp-borderline-1,Complaint,High,borderline,Refund Request,test,False,Refund Request,auto_route,0.9605945198705554,High
+comp-borderline-2,Complaint,High,borderline,Payment Issue,test,False,Payment Issue,auto_route,0.937870181526498,Medium
+comp-novel-2,Complaint,Medium,novel,,test,False,General Inquiry,route_with_flag,0.6333113854322626,Low
+refu-short-1,Refund Request,Medium,short,,test,False,Refund Request,auto_route,0.9999997191236942,Medium
+refu-short-2,Refund Request,Medium,short,,test,False,Refund Request,auto_route,0.9999977992051938,Medium
+refu-short-3,Refund Request,Low,short,,test,False,Refund Request,auto_route,0.9999999491757112,Medium
+refu-messy-2,Refund Request,High,messy,,test,False,Refund Request,auto_route,0.9999585935458056,Medium
+refu-messy-3,Refund Request,High,messy,,test,False,Refund Request,auto_route,0.9999580474619224,Medium
+refu-borderline-1,Refund Request,High,borderline,Payment Issue,test,False,Payment Issue,route_with_flag,0.8247442181539535,High
+refu-borderline-2,Refund Request,Medium,borderline,Complaint,test,False,Refund Request,auto_route,0.999672201901432,Medium
+refu-novel-2,Refund Request,Medium,novel,,test,False,Refund Request,auto_route,0.990360618298075,High
+job-short-1,Job Application,Low,short,,test,False,Job Application,auto_route,0.999526823797116,Low
+job-short-2,Job Application,Medium,short,,test,False,Job Application,auto_route,0.9937708565572192,Low
+job-short-3,Job Application,Low,short,,test,False,Job Application,auto_route,0.999999999731248,Low
+job-messy-2,Job Application,Low,messy,,test,False,Job Application,auto_route,0.9995215740555627,Low
+job-messy-3,Job Application,Medium,messy,,test,False,Job Application,auto_route,0.9693499144075882,High
+job-borderline-1,Job Application,Medium,borderline,Technical Support,test,False,Job Application,auto_route,0.9019073940355216,Medium
+job-borderline-2,Job Application,Medium,borderline,General Inquiry,test,False,Unknown,manual_review,0.8972097649378125,NA
+job-novel-2,Job Application,Medium,novel,,test,False,Job Application,auto_route,0.9869904420285908,Low
+gene-short-1,General Inquiry,Low,short,,test,False,General Inquiry,auto_route,0.9655856526470395,Low
+gene-short-2,General Inquiry,Low,short,,test,False,Unknown,manual_review,0.78907828633614,NA
+gene-short-3,General Inquiry,Low,short,,test,False,Unknown,manual_review,0.7625962441360141,NA
+gene-messy-2,General Inquiry,Low,messy,,test,False,General Inquiry,auto_route,0.9992215695924777,Low
+gene-messy-3,General Inquiry,Low,messy,,test,False,General Inquiry,auto_route,0.930432187915596,Low
+gene-borderline-1,General Inquiry,Medium,borderline,Payment Issue,test,False,Payment Issue,auto_route,0.999966386770717,Medium
+gene-borderline-2,General Inquiry,Low,borderline,Account & Login,test,False,Account & Login,auto_route,0.9999950643266226,Low
+gene-novel-2,General Inquiry,Low,novel,,test,False,Complaint,route_with_flag,0.8067601221837549,Low
+unk-spam-2,Unknown,,unknown,,test,True,Unknown,manual_review,0.3467413135992286,NA
+unk-spam-3,Unknown,,unknown,,test,True,Refund Request,auto_route,0.934673282427251,High
+unk-spam-5,Unknown,,unknown,,test,True,Unknown,manual_review,0.4432822140831856,NA
+unk-newsletter-1,Unknown,,unknown,,test,False,Unknown,manual_review,0.5767133691655737,NA
+unk-newsletter-4,Unknown,,unknown,,test,False,Unknown,manual_review,0.9620141889340292,NA
+unk-newsletter-5,Unknown,,unknown,,test,False,General Inquiry,auto_route,0.91220026040517,Low
+unk-wrongrecip-2,Unknown,,unknown,,test,False,Unknown,manual_review,0.6824387492395824,NA
+unk-wrongrecip-3,Unknown,,unknown,,test,False,Unknown,manual_review,0.5305644425435672,NA
+unk-wrongrecip-5,Unknown,,unknown,,test,False,Unknown,manual_review,0.5015822670863636,NA
+unk-autoreply-2,Unknown,,unknown,,test,False,Unknown,manual_review,0.47801934802782,NA
+unk-autoreply-4,Unknown,,unknown,,test,False,Complaint,route_with_flag,0.6333918234385161,Medium
+unk-autoreply-5,Unknown,,unknown,,test,False,Account & Login,route_with_flag,0.7569781193220818,Low
+unk-nonenglish-1,Unknown,,unknown,,test,False,Unknown,manual_review,0.9384180269527062,NA
+unk-nonenglish-2,Unknown,,unknown,,test,False,Unknown,manual_review,0.8097158969686983,NA
+unk-nonenglish-5,Unknown,,unknown,,test,False,Unknown,manual_review,0.8224422663325007,NA
+unk-unrelated-1,Unknown,,unknown,,test,False,Unknown,manual_review,0.9601948164217646,NA
+unk-unrelated-2,Unknown,,unknown,,test,False,Unknown,manual_review,0.499854077950519,NA
+unk-unrelated-5,Unknown,,unknown,,test,False,General Inquiry,auto_route,0.8918903883368029,Low

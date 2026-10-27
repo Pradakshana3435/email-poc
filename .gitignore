@@ -1,0 +1,19 @@
+# Environment and caches
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+
+# Private: databases and real/personal email text
+data/*.db
+data/test_handwritten*.csv
+reports/final_test_predictions.csv
+reports/final_handwritten_predictions.csv
+
+# Third-party dataset (download from Kaggle instead)
+data/raw/
+
+# Intermediate files
+data/E_tr.npy
+data/E_va.npy

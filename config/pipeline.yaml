@@ -1,0 +1,26 @@
+categories:
+  - Technical Support
+  - Payment Issue
+  - Account & Login
+  - Sales Inquiry
+  - Complaint
+  - Refund Request
+  - Job Application
+  - General Inquiry
+
+routing:
+  Technical Support: Technical Support
+  Payment Issue: Finance
+  Account & Login: Customer Support
+  Sales Inquiry: Sales
+  Complaint: Customer Success
+  Refund Request: Finance
+  Job Application: HR
+  General Inquiry: Customer Support
+  Unknown: Manual Review
+
+thresholds:
+  auto_route: 0.85      # >= this: route automatically
+  review_flag: 0.60     # 0.60-0.849: route with review flag; below: manual review
+  min_margin: 0.00      # top1 - top2 below this forces a review flag (tune on dev set only)
+  min_similarity: 0.42  # minimum similarity for automatic routing
