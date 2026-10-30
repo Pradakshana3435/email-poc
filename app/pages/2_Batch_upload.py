@@ -7,6 +7,7 @@ import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
+from src import quota
 from src.predict import predict
 from src.store import save
 
@@ -14,27 +15,38 @@ st.set_page_config(page_title="Batch upload", layout="wide")
 st.title("Batch classification")
 st.write("Upload a CSV with `subject` and `body` columns.")
 
+slot = st.sidebar.empty()
+quota.render(slot)
+
 f = st.file_uploader("CSV file", type="csv")
 if f is not None:
     df = pd.read_csv(f, dtype=str, keep_default_na=False)
     missing = {"subject", "body"} - set(df.columns)
     if missing:
         st.error(f"Missing column(s): {', '.join(sorted(missing))}")
-        st.stop()
-    st.write(f"{len(df)} emails loaded.")
-    store = st.checkbox("Also save results to the review queue", value=True)
+    elif quota.remaining() == 0:
+        st.error(quota.MSG)
+    else:
+        if len(df) > quota.remaining():
+            st.warning(f"{len(df)} rows uploaded, but only {quota.remaining()} emails are left "
+                       f"in this session. Only the first {quota.remaining()} rows will be classified.")
+            df = df.head(quota.remaining())
+        st.write(f"{len(df)} emails will be classified.")
+        store = st.checkbox("Also save results to the review queue", value=True)
 
-    if st.button("Classify all", type="primary"):
-        rows, bar = [], st.progress(0.0)
-        for i, (s, b) in enumerate(zip(df.subject, df.body)):
-            r = predict(s, b)
-            if store:
-                save(s, b, r)
-            rows.append(dict(category=r["category"], department=r["department"],
-                             priority=r["priority"], confidence=round(float(r["confidence"]), 3),
-                             action=r["action"], reason=r.get("reason") or ""))
-            bar.progress((i + 1) / len(df))
-        st.session_state["batch_out"] = pd.concat([df, pd.DataFrame(rows)], axis=1)
+        if st.button("Classify all", type="primary"):
+            rows, bar = [], st.progress(0.0)
+            for i, (s, b) in enumerate(zip(df.subject, df.body)):
+                r = predict(s, b)
+                quota.consume(1)
+                if store:
+                    save(s, b, r)
+                rows.append(dict(category=r["category"], department=r["department"],
+                                 priority=r["priority"], confidence=round(float(r["confidence"]), 3),
+                                 action=r["action"], reason=r.get("reason") or ""))
+                bar.progress((i + 1) / len(df))
+            quota.render(slot)
+            st.session_state["batch_out"] = pd.concat([df, pd.DataFrame(rows)], axis=1)
 
 if "batch_out" in st.session_state:
     out = st.session_state["batch_out"]

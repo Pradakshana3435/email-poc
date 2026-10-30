@@ -16,6 +16,7 @@
 11. [Limitations](#10-limitations)
 12. [Future work](#11-future-work)
 13. [Repository layout and how to run it](#12-repository-layout-and-how-to-run-it)
+14. [Additions after the evaluation freeze: junk filter, spam gate, session limit](#13-additions-after-the-evaluation-freeze-junk-filter-spam-gate-session-limit)
 
 ---
 
@@ -38,7 +39,7 @@ Two sentences sum it up. On data that looks like the training data, the system i
 
 So this is a good triage assistant with a human in the loop. It is not ready to route real mail on its own.
 
-A note on the version you can download: the automated-notice filter (Section 5.3) was added after the frozen evaluation, so the numbers above describe the system without it. The filter has been checked only on training, validation and development emails, never on the test sets.
+A note on the version you can download: three things were added after the frozen evaluation, so the numbers above describe the system without them. These are the automated-notice filter (Section 5.3), and a junk filter, a spam gate and a ten-email session limit (Section 13). The notice filter has been checked only on training, validation and development emails. The junk filter and spam gate have their own, separate evaluations in Section 13; none of the three has been re-run through the frozen test sets above. The spam gate does not block any of the 152 held-out emails (one is sent to manual review), but that check is a sanity check, not an accuracy measure.
 
 ---
 
@@ -67,7 +68,7 @@ A classifier that is right 90% of the time but never says which 10% it got wrong
 | 60–84% | Route, with a review flag |
 | < 60% | Send to manual review |
 
-Emails that look unlike anything in the training data are also sent to manual review (Section 5). A separate rule-based filter sets aside automated notices such as newsletters and auto-replies, so they are never routed to a team (Section 5.3). The question the evaluation tries to answer is therefore two questions: how often is the category right, and when the system acts on its own, how often is it right and does its confidence deserve trust?
+Emails that look unlike anything in the training data are also sent to manual review (Section 5). A separate rule-based filter sets aside automated notices such as newsletters and auto-replies, so they are never routed to a team (Section 5.3). Two further steps run before the category model: a junk filter for unusable input and a spam gate for unwanted mail (Section 13). The question the evaluation tries to answer is therefore two questions: how often is the category right, and when the system acts on its own, how often is it right and does its confidence deserve trust?
 
 ### 1.3 Routing
 
@@ -84,6 +85,7 @@ Routing lives in `config/pipeline.yaml`, so it can be changed without retraining
 | Complaint | Customer Success |
 | Job Application | HR |
 | Unknown | Manual Review |
+| Spam (added later) | Spam / Quarantine |
 
 ### 1.4 Scope
 
@@ -103,7 +105,7 @@ Three groups of emails are used, kept strictly separate:
 | Hand-written development set | 28 | Tuning the Unknown rule |
 | Hand-written test set | 82 | Stress test on messy, short, novel and borderline emails |
 
-The corpus is above the 500-email target, but 95% of it is synthetic.
+The corpus is above the 500-email target, but 95% of it is synthetic. The spam data added later is described separately in Section 13.
 
 ### 2.2 Sources
 
@@ -207,6 +209,8 @@ Two things happen before the split rather than inside the pipeline: the Kaggle p
 
 One known rough edge: the sign-off remover is a regular expression that deletes "thanks / regards / thank you" and up to six following words at the end of the text. On a very short email that ends with "thank you" plus a few real words, it can cut some of them. I haven't measured how often that happens.
 
+The spam model added later (Section 13) uses the same TF-IDF preprocessing, so it sees `url` and `num` tokens rather than raw links and numbers.
+
 ---
 
 ## 4. Models and comparison
@@ -270,7 +274,7 @@ Correct predictions now had a mean confidence of 0.96 against 0.68 for wrong one
 
 ### 5.3 Catching emails that don't belong anywhere
 
-Confidence alone can't spot emails outside the eight categories. A newsletter can still look "confidently" like a General Inquiry. So there are three safeguards, in the order the code applies them.
+Confidence alone can't spot emails outside the eight categories. A newsletter can still look "confidently" like a General Inquiry. So there are three safeguards, in the order the code applies them. (After the freeze, a junk filter and a spam gate were added in front of these; see Section 13.)
 
 1. **A rule-based notice filter** (`src/notices.py`) runs first. It looks for phrases typical of machine-generated mail, such as "unsubscribe", "no-reply", "booking confirmed" and "amount paid". An email it catches never reaches the model: it gets the category Unknown, the department "Filtered (automated)", the action `filtered` and no priority. It flagged none of the 856 training and validation emails.
 2. **Low confidence.** If the top class probability is below 0.60, the email goes to manual review.
@@ -352,11 +356,13 @@ Here are two examples from the test run in my notebook:
 
 The first example also shows the Payment/Refund overlap: one of the three neighbours is a Payment Issue.
 
+For emails the spam gate blocks, the "words that triggered it" are the top terms of the spam model, shown in the dashboard instead of the category explanation.
+
 ---
 
 ## 8. Evaluation
 
-I ran the final evaluation once, with models and thresholds frozen. The predictions were saved to two CSV files, and every number below is computed from them. The published copies, `reports/final_test_predictions_public.csv` and `reports/final_handwritten_predictions_public.csv`, have the email text removed (some hand-written emails come from my own inbox) but keep the true label, the prediction, the action, the confidence and the priority for every email. The frozen system did not include the automated-notice filter (Section 5.3).
+I ran the final evaluation once, with models and thresholds frozen. The predictions were saved to two CSV files, and every number below is computed from them. The published copies, `reports/final_test_predictions_public.csv` and `reports/final_handwritten_predictions_public.csv`, have the email text removed (some hand-written emails come from my own inbox) but keep the true label, the prediction, the action, the confidence and the priority for every email. The frozen system did not include the automated-notice filter (Section 5.3), the junk filter or the spam gate (Section 13).
 
 ### 8.1 How to read the metrics
 
@@ -497,16 +503,18 @@ The dashboard is a Streamlit app. The main file, `app/app.py`, has four tabs. Re
 
 | Tab | What it does |
 |---|---|
-| **Single email** | Paste a subject and body and press Classify. The result is colour-coded: green for auto-routed, amber for routed with a review flag, red for manual review. It shows the category, department, priority and confidence, then a "Why this result" panel with the words that pushed the prediction, the most similar training emails with their similarity scores, and where the priority came from (the model, or which rules fired). For Unknown results the confidence is shown as n/a and a note gives the closest category and says the email looks unlike the training emails. |
-| **Batch (CSV)** | Upload a CSV with `subject` and `body` columns, classify every row with a progress bar, view the table, and download the results as a CSV. A sample file is in `data/batch_demo.csv`. |
-| **Review queue** | Lists the emails that were sent to manual review or routed with a flag and haven't been checked yet. A reviewer opens one, reads the body, picks the correct category, and marks it as reviewed. The correction is saved (`reviewed` and `final_category` columns). |
+| **Single email** | Paste a subject and body and press Classify. The result is colour-coded: green for auto-routed, amber for routed with a review flag, red for manual review or blocked spam. It shows the category, department, priority and confidence, then a "Why this result" panel with the words that pushed the prediction, the most similar training emails with their similarity scores, and where the priority came from (the model, or which rules fired). For Unknown results the confidence is shown as n/a and a note gives the closest category and says the email looks unlike the training emails. For blocked spam it shows the spam score and the words that triggered it instead. |
+| **Batch (CSV)** | Upload a CSV with `subject` and `body` columns, classify every row with a progress bar, view the table, and download the results as a CSV. A sample file is in `data/batch_demo.csv`. If the file has more rows than the session has left, only the first rows that fit are classified, and a warning says so. |
+| **Review queue** | Lists the emails that were sent to manual review, routed with a flag, or blocked as spam, and haven't been checked yet. A reviewer opens one, reads the body, picks the correct category (the list includes Unknown and Spam), and marks it as reviewed. The correction is saved (`reviewed` and `final_category` columns). |
 | **History** | Every classified email, with bar charts of how many fell into each action and each category. |
 
-Emails that the notice filter recognises as automated notices get their own `filtered` status. They skip the model, are saved with the reason (for example "unsubscribe, auto_generated"), and are shown with a short "no action needed" message. They don't enter the review tab's queue, but the review page can show them under a Filtered view. The filter was added after the frozen evaluation (Section 5.3), so the dashboard behaves slightly differently from the system that produced the Section 8 numbers.
+A sidebar counter shows how many emails are left in the session (Section 13.2).
+
+Emails that the notice filter recognises as automated notices get their own `filtered` status. They skip the model, are saved with the reason (for example "unsubscribe, auto_generated"), and are shown with a short "no action needed" message. They don't enter the review tab's queue, but the review page can show them under a Filtered view. Unusable input (gibberish, very short or greeting-only text) is sent to manual review with the reason "unusable input" (Section 13.3). The filter, the junk filter and the spam gate were all added after the frozen evaluation (Sections 5.3 and 13), so the dashboard behaves differently from the system that produced the Section 8 numbers.
 
 Two of the tabs also exist as standalone Streamlit pages in `app/pages/`:
 
-- `2_Batch_upload.py` does the same batch classification, with a checkbox to choose whether results are saved to the review queue.
+- `2_Batch_upload.py` does the same batch classification, with a checkbox to choose whether results are saved to the review queue, and the same session limit.
 - `1_Review_queue.py` is a read-only monitor: counts for auto-routed, flagged, manual review and filtered emails, a filter to switch between them, and a detail view with the explanation. It doesn't record corrections, which the review tab does.
 
 This duplication is a leftover from building the app in stages. It works, but a cleaner version would keep one copy of each.
@@ -545,7 +553,17 @@ I have tried to put the biggest ones first.
 11. **English only, text only.** No attachments, signatures, quoted replies or thread context.
 12. **No duplicate detection and no API.** The dashboard shows similar emails but doesn't flag duplicates.
 13. **Speed.** About 96 ms per email on a CPU, one at a time. This is fine for a dashboard, and I haven't tested it at volume.
-14. **The released system is not exactly the evaluated one.** The notice filter was added after the frozen evaluation, so it has not been measured on test data (Section 5.3).
+14. **The released system is not exactly the evaluated one.** The notice filter, the junk filter and the spam gate were added after the frozen evaluation, so the Section 8 numbers describe the system without them (Sections 5.3 and 13).
+
+Added with the junk filter, spam gate and session limit (Section 13):
+
+15. **The spam model has not been tested on a real support inbox.** It is trained on synthetic spam plus old Enron-style spam (pharmacy, stock, adult content). The real test set comes from the same corpus as the real training data, so it shows that the model generalises beyond my synthetic generator, not that it is ready for production mail.
+16. **One real email would be blocked at the chosen threshold.** On the 50 real ham emails in the held-out Enron test, one scores 0.90 or higher (1 of 50). The Enron ham is corporate notification mail, a different domain from support mail, so this is not an estimate of the rate for customers. Blocked emails still appear in the review queue, so a reviewer can correct them. I did not tune the threshold on this result.
+17. **The spam model misses two kinds of spam.** Subtle messages with no spam vocabulary (a token presale, a job offer lure, a romance-style message, a mystery shopper offer) and deliberately misspelled spam ("vlgr", "mdlctlns"). It uses word n-grams only.
+18. **Small validation sets for the spam thresholds.** 60 spam and 196 ham in total, and only 30 + 30 real emails. Counts at each threshold could move by several emails on a different draw. The thresholds were chosen on validation only.
+19. **The junk filter has no evaluation set.** It was checked on 20 hand-made examples, and its one known false positive (a masked account number read as keyboard mashing) was found by accident when I ran the full pipeline over the held-out test file. The fix and its 30% threshold were chosen by hand. A short message dominated by one repeated run, such as "pleaseeeeee help", can still be rejected.
+20. **The session limit is a demo guard, not security.** The counter lives in the browser session and resets when the page is refreshed.
+21. **The v1 and v2 synthetic test sets are different emails.** v2 re-split the synthetic spam and hard ham, so v1 and v2 are only directly comparable on the real Enron test set, which is identical for both.
 
 ---
 
@@ -563,6 +581,10 @@ In rough order of value for effort:
 8. **A larger, independently written test set,** ideally by someone who hasn't seen the system.
 9. **Multilingual support.** The Kaggle data already has German, Spanish, French and Portuguese, and the hand-written test shows non-English emails are currently handled as Unknown.
 10. **Evaluate the notice filter properly.** Collect a fresh set of Unknown emails that nobody has tuned against, measure the filter's catch rate and its false positives, and re-run the full evaluation with the filter active.
+11. **Test the spam gate on real support mail.** Use a small set of redacted spam and legitimate emails from a real inbox as a final check that nobody tunes against, and measure the false-block rate on genuine customers.
+12. **Try character n-grams in the spam model** to see through deliberate misspellings, and add real support-style spam to the training data.
+13. **Build an evaluation set for the junk filter,** including masked numbers, frustrated punctuation, very short messages and non-English text.
+14. **Enforce the session limit on the server** if the dashboard is ever exposed to the public.
 
 ---
 
@@ -571,19 +593,24 @@ In rough order of value for effort:
 ```
 email-poc/
 ├── app/                  Streamlit dashboard
-│   ├── app.py            single email
-│   └── pages/            review queue, batch upload
-├── config/pipeline.yaml  categories, routing, thresholds
+│   ├── app.py            single email, batch, review queue, history
+│   └── pages/            review queue monitor, batch upload
+├── config/pipeline.yaml  categories, routing, thresholds, spam gate, session limit
 ├── data/
 │   ├── raw/              Kaggle download and cleaned Kaggle files
 │   ├── synthetic/        24 synthetic CSV batches
+│   ├── spam/             synthetic spam and hard-ham CSVs (real/ is not committed)
 │   ├── emails_final.csv, train.csv, val.csv, test.csv
-│   ├── test_handwritten.csv, batch_demo.csv
+│   ├── test_handwritten.csv (not committed), batch_demo.csv
 │   └── results.db        local SQLite history (not committed)
-├── models/               tfidf_lr, minilm_lr, priority_model, meta (temperature), E_train.npy
+├── models/               tfidf_lr, minilm_lr, priority_model, meta (temperature), E_train.npy,
+│                         spam_tfidf_lr (v1), spam_v2_tfidf_lr (v2, in use)
 ├── notebooks/01_explore.ipynb
 ├── reports/              final predictions, confusion matrices, screenshots
-└── src/                  preprocess, decision, priority, notices, predict, store
+├── src/                  preprocess, decision, priority, notices, junk, spam, quota, predict, store
+├── .streamlit/config.toml   turns off the file watcher (removes harmless torchvision warnings)
+└── train_spam.py, train_spam_v2.py, check_spam_data.py, merge_spam.py,
+    inspect_spam.py, build_real.py, check_test_spam.py   spam data and model scripts
 ```
 
 Reproducing the evaluation numbers: the per-email predictions are in `reports/final_test_predictions_public.csv` and `reports/final_handwritten_predictions_public.csv` (text columns removed). The confusion matrices are generated from them by `make_figures.py`, with no model re-run. The 110 hand-written emails themselves are not published.
@@ -595,9 +622,125 @@ pip install -r requirements.txt
 streamlit run app/app.py
 ```
 
-**Do not re-run the final evaluation cell** in the notebook. It overwrites the two prediction files, and the numbers in this report come from them.
+**Do not re-run the final evaluation cell** in the notebook. It overwrites the two prediction files, and the numbers in this report come from them. Likewise, do not re-run `python train_spam_v2.py --final`: it is a one-time look at the spam test sets, and the numbers in Section 13 come from that run.
 
-**Data note.** The Kaggle dataset ("Multilingual Customer Support Tickets") is credited to its authors and should be downloaded from Kaggle rather than redistributed from this repository. Some of the hand-written Unknown emails come from my own inbox, so `data/test_handwritten.csv` is excluded from the repository (see `.gitignore`).
+**Data note.** The Kaggle dataset ("Multilingual Customer Support Tickets") is credited to its authors. The corpus files in `data/` include 48 rows derived from it. Some of the hand-written Unknown emails come from my own inbox, so `data/test_handwritten.csv` is excluded from the repository (see `.gitignore`). The real spam and ham used for the spam model come from the Hugging Face dataset `SetFit/enron_spam` (Enron emails); they are not committed because they are real people's text, and `data/spam/real/` is in `.gitignore`. To rebuild them, download the dataset and run `build_real.py`.
+
+---
+
+## 13. Additions after the evaluation freeze: junk filter, spam gate, session limit
+
+These three additions were made after the Section 8 evaluation. They have their own checks, described here, and none of them changes the frozen numbers.
+
+### 13.1 The pipeline now
+
+Each email passes through these steps, in this order, and the first one that applies decides what happens:
+
+| Step | What it does | Result |
+|---|---|---|
+| 1. Junk filter (`src/junk.py`) | Rejects unusable input: gibberish, too short, greeting-only, keyboard mashing | Manual review, reason "unusable input" |
+| 2. Notice filter (`src/notices.py`) | Sets aside automated mail such as newsletters and auto-replies | `filtered`, no action needed |
+| 3. Spam gate (`src/spam.py`) | A separate spam model scores the email | Score ≥ 0.90: blocked, "Spam / Quarantine". 0.50 to 0.90: manual review after the category model has run. Below 0.50: continues normally |
+| 4. Category model | The calibrated ensemble from Sections 4 and 5, with the Unknown rules | Auto-route, route with flag, or manual review |
+| 5. Priority | Hybrid model and rules (Section 6) | High, Medium or Low, or NA |
+
+The spam gate is a separate binary model, not a ninth category. A spam email is not one of the departments' topics, and keeping it separate means the category model and its frozen evaluation are untouched. The thresholds, the department name and the model file are set in `config/pipeline.yaml` under `spam:` (`enabled`, `block`, `review`, `department`, `model_path`).
+
+### 13.2 Session limit
+
+The dashboard allows 10 emails per browser session, counting single and batch classification together. The limit comes from `limits.max_emails_per_session` in `config/pipeline.yaml`, the counter is kept in the Streamlit session state, and a sidebar metric shows how many are left. If a batch has more rows than remain, only the first rows that fit are processed, and a warning says so. The counter resets when the page is refreshed, so this is a guard for a public demo, not a security control. Junk inputs count toward the limit like any other call.
+
+### 13.3 Junk filter
+
+The category model always picks one of its eight categories, so gibberish has to be caught before it. The rules are deliberately conservative, because rejecting a real email is worse than letting a junk one through. An email is rejected as unusable if it has:
+
+- fewer than 6 letters or fewer than 2 words;
+- less than half of its visible characters as letters ("mostly digits and symbols");
+- repeated-character runs making up more than 30% of the text;
+- only greeting or filler words ("hi hello", "test", "please help");
+- the same few words repeated over and over;
+- mostly Latin words with no vowels or with side-by-side keyboard keys ("asdfghjkl").
+
+Links and addresses are ignored when counting. The rules work on letters in any script, so Tamil text is not penalised.
+
+Unusable input is sent to manual review as Unknown, with the reason "unusable input: …" and no priority. I first returned a separate `junk` status, then changed it so that a human sees these emails in the review queue, and so that they are not counted as spam. The junk filter does not understand meaning: a well-formed but irrelevant email, such as phishing or a lottery message, passes it and is the spam model's job.
+
+**A false positive, and the fix.** When I ran the full pipeline over the 152 held-out emails, one legitimate Account & Login email ("Hotstar login blocked") was rejected as "repeated characters". It contains a masked phone number, `98XXXXXX61`, and the original rule flagged any run of six identical characters. I fixed it in two ways: tokens that contain digits (account numbers, order IDs, masked numbers) are ignored, and a repeated run only counts as junk if it makes up more than 30% of what remains. After the fix, that email is classified normally, and `asdfghjkl aaaaaaaaaaaaaa` is still rejected. The junk filter has no proper evaluation set (Section 10, item 19).
+
+### 13.4 Spam data
+
+| Set | Spam | Ham | Notes |
+|---|---|---|---|
+| Synthetic spam | 200 | | Written by an LLM: lottery, phishing, fake job offers, token presales, romance-style messages and similar |
+| Hard ham (synthetic) | | 100 | Genuine emails that sound spammy: urgent payment problems, emails with links, angry complaints |
+| Normal ham | | 1,008 | The existing corpus: `train.csv`, `val.csv`, `test.csv` |
+| Real training data (Enron) | 150 | 150 | Hugging Face `SetFit/enron_spam`; not committed |
+| Real test data (Enron) | 50 | 50 | Same source; held out, never trained on or tuned on; not committed |
+
+The labelling rule is: someone who wants to buy from us is a Sales Inquiry, and someone trying to sell to us is spam.
+
+A style check found a possible shortcut: 64% of the synthetic spam contains a link, against 15% of the hard ham and 0% of the normal ham, so a model could learn "has a link = spam". For v2, the training data is augmented so that benign links are appended to about 40% of the ham and links are stripped from about 40% of the spam. I then checked the same 40 validation ham emails with and without a link added: the mean spam score went from 0.039 to 0.066, a small difference, so the shortcut is mostly broken.
+
+**Splits for v2.** The synthetic spam and hard ham were each split 70 / 15 / 15 (seed 42). Normal ham keeps its existing train, validation and test files. 20% of the real training data was set aside as a real validation set. Training had 1,544 emails (292 spam) after augmentation and validation had 256 (60 spam, 196 ham). The regularisation strength `C` was chosen on validation log loss from 1, 10, 30, 100, 300 and 1000: the losses were 0.3673, 0.1950, 0.1577, 0.1374, 0.1396 and 0.1439, so `C = 100`. The test sets were only read in the single `--final` run, after the choices were made.
+
+### 13.5 Spam results
+
+**v1** (trained on synthetic data only). On its validation set (30 spam, 166 ham), a threshold of 0.50 caught 27 of 30 spam with no false flags; 0.90 caught 16. On its frozen synthetic test set (30 spam, 167 ham), 0.50 caught 26 of 30 with 1 false flag, and 0.90 caught 8 of 30 with none. On the real Enron test set it generalised badly:
+
+| Threshold | Spam caught (of 50) | Ham flagged (of 50) |
+|---|---|---|
+| 0.50 | 6 | 12 |
+| 0.70 | 5 | 2 |
+| 0.80 | 3 | 0 |
+| 0.85 | 1 | 0 |
+| 0.90 | 1 | 0 |
+
+At 0.80 or higher v1 caught almost none of the real spam, and at 0.50 it flagged 12 of 50 real ham emails. That is the reason for v2.
+
+**v2** (synthetic plus real training data, link-neutralised, `C = 100`), validation:
+
+| Threshold | Spam caught (of 60) | Ham flagged (of 196) | Real only: spam (of 30) | Real only: ham (of 30) |
+|---|---|---|---|---|
+| 0.50 | 50 | 3 | 24 | 3 |
+| 0.70 | 41 | 2 | 18 | 2 |
+| 0.80 | 39 | 1 | 18 | 1 |
+| 0.85 | 35 | 1 | 16 | 1 |
+| 0.90 | 30 | 0 | 14 | 0 |
+
+**Chosen thresholds: block at 0.90, review at 0.50.** At 0.90 there were no false flags on validation, which fits the rule that the block threshold must favour not blocking real customers. Everything from 0.50 up gets a human look. I did not choose 0.85, because it blocked one more ham email on validation for five more spam emails.
+
+**The one-time final run** (v2 refitted on training plus validation, then scored once on the test sets):
+
+| Test | Spam sent to review or blocked (≥ 0.50) | Spam blocked (≥ 0.90) | Ham blocked (≥ 0.90) | Ham sent to review or blocked (≥ 0.50) |
+|---|---|---|---|---|
+| v2, synthetic test (30 spam, 167 ham) | 26 / 30 | 11 / 30 | 0 / 167 | 1 / 167 |
+| v2, real Enron test (50 / 50) | 47 / 50 | 37 / 50 | **1 / 50** | 3 / 50 |
+| v1, real Enron test (50 / 50) | 6 / 50 | 1 / 50 | 0 / 50 | 12 / 50 |
+
+The full v2 table on the real test set:
+
+| Threshold | Spam caught (of 50) | Ham flagged (of 50) |
+|---|---|---|
+| 0.50 | 47 | 3 |
+| 0.70 | 44 | 2 |
+| 0.80 | 43 | 2 |
+| 0.85 | 39 | 1 |
+| 0.90 | 37 | 1 |
+
+**How to read this.**
+
+- v2 is a large improvement over v1 on real spam: 37 of 50 blocked and 47 of 50 caught or reviewed, against 1 and 6. The ham flagged at 0.50 also fell, from 12 to 3.
+- On synthetic mail, most spam lands between 0.50 and 0.90 and goes to review (26 of 30 reviewed or blocked, 11 blocked). I describe this as "caught or reviewed", not "blocked".
+- **One real ham email would be blocked** (1 of 50 at 0.90). I report it as a limitation and did not change the threshold after seeing it.
+- Enron is the same corpus as the real training data, so the real-test result shows generalisation beyond my synthetic generator, not readiness for a support inbox (Section 10, item 15).
+
+**Errors.** The three ham emails flagged at 0.50 on validation were all Enron automated notices: two "approval is overdue: access request" messages (scores 0.71 and 0.55) and an expense-report status change (0.87). They are corporate notification mail, not customer messages, and none reached 0.90. The spam that scored below 0.50 fell into two groups: four subtle synthetic messages with no spam vocabulary, and six obfuscated or adult-content Enron messages with deliberate misspellings.
+
+### 13.6 A sanity check on the held-out file
+
+After wiring everything together I ran the full pipeline over `data/test.csv` (152 emails). No email was blocked as spam. One legitimate email ("Re: Swift booking") scored 0.89 on spam, just under the block threshold, and went to manual review with a "possible spam" reason. The junk filter wrongly rejected one email at first (Section 13.3) and was fixed. The final counts were 120 auto-routed, 12 routed with a flag and 20 in manual review, against 121, 12 and 19 in the frozen run; the extra manual review is the Swift booking email. This is a check that the new steps do not damage normal mail, not an accuracy measure, and it is not part of the frozen evaluation.
+
+The 0.89 score shows how thin the margin is: a slightly different wording could have been blocked. It is the reason `block` stays at 0.90 and is not lowered.
 
 ---
 
