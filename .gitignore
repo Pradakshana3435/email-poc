@@ -11,14 +11,10 @@ data/test_handwritten*.csv
 reports/final_test_predictions.csv
 reports/final_handwritten_predictions.csv
 
-# Third-party dataset (download from Kaggle instead)
-data/raw/
-
 # Intermediate files
 data/E_tr.npy
 data/E_va.npy
 
-data/*.csv
 !data/batch_demo.csv
 
 # Real spam/ham from a public corpus (license unconfirmed, contains real people's text)
