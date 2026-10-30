@@ -17,3 +17,11 @@ data/raw/
 # Intermediate files
 data/E_tr.npy
 data/E_va.npy
+
+data/*.csv
+!data/batch_demo.csv
+
+# Real spam/ham from a public corpus (license unconfirmed, contains real people's text)
+data/spam/real/
+data/spam/new_spam_*.csv
+data/spam/new_ham_*.csv

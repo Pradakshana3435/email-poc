@@ -24,3 +24,13 @@ thresholds:
   review_flag: 0.60     # 0.60-0.849: route with review flag; below: manual review
   min_margin: 0.00      # top1 - top2 below this forces a review flag (tune on dev set only)
   min_similarity: 0.42  # minimum similarity for automatic routing
+
+limits:
+  max_emails_per_session: 10
+
+spam:
+  enabled: true
+  block: 0.90        # at or above: quarantined, never routed
+  review: 0.50       # between review and block: forced to manual review
+  department: Spam / Quarantine
+  model_path: models/spam_v2_tfidf_lr.joblib

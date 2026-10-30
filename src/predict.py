@@ -1,16 +1,19 @@
-#predict.py
+# predict.py
 from pathlib import Path
 import sys
+
 import joblib
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import normalize
-from src.notices import detect_notice
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from src.junk import junk_reason
+from src.notices import detect_notice
+from src.spam import spam_check
 from src.preprocess import preprocess
 from src.decision import load_config, decide
 from src.priority import hybrid_priority
@@ -21,6 +24,14 @@ HIDE = {"num", "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "o
         "january", "february", "march", "april", "june", "july", "august",
         "september", "october", "november", "december"}
 _S = {}
+_CFG = {}
+
+
+def _config():
+    """Read pipeline.yaml once instead of on every call."""
+    if not _CFG:
+        _CFG.update(load_config(ROOT / "config" / "pipeline.yaml"))
+    return _CFG
 
 
 def _load():
@@ -29,7 +40,7 @@ def _load():
     from sentence_transformers import SentenceTransformer
     meta = joblib.load(MODELS / "meta.joblib")
     _S.update(
-        cfg=load_config(ROOT / "config" / "pipeline.yaml"),
+        cfg=_config(),
         lr_t=joblib.load(MODELS / "tfidf_lr.joblib"),
         lr_e=joblib.load(MODELS / "minilm_lr.joblib"),
         pri=joblib.load(MODELS / "priority_model.joblib"),
@@ -67,6 +78,16 @@ def _top_terms(s, text_t, cls, k=5):
 def predict(subject, body):
     subject, body = subject or "", body or ""
 
+    # 1. junk: gibberish, too short, greeting-only, keyboard mashing
+    # 1. unusable input: gibberish, too short, greeting-only, keyboard mashing
+    reason = junk_reason(subject, body)
+    if reason:
+        return dict(category="Unknown", predicted=None, confidence=0.0, margin=0.0, similarity=None,
+                    department="Manual Review", action="manual_review",
+                    reason=f"unusable input: {reason}",
+                    priority="NA", priority_reason="not applicable (unusable input)",
+                    top_terms=[], neighbours=[])
+    # 2. automated notices (newsletters, auto-replies): never reach a model
     is_notice, markers = detect_notice(subject, body)
     if is_notice:
         return dict(category="Unknown", predicted=None, confidence=0.0, margin=0.0, similarity=None,
@@ -75,6 +96,16 @@ def predict(subject, body):
                     priority="NA", priority_reason="not applicable (automated notice)",
                     top_terms=[], neighbours=[])
 
+    # 3. spam gate (separate from the category model)
+    cfg_sp = _config().get("spam", {})
+    sp, sp_terms = (spam_check(subject, body) if cfg_sp.get("enabled") else (0.0, []))
+    if sp >= cfg_sp.get("block", 0.85):
+        return dict(category="Spam", predicted=None, confidence=sp, margin=0.0, similarity=None,
+                    department=cfg_sp.get("department", "Spam / Quarantine"), action="spam",
+                    reason=f"spam score {sp:.0%}", priority="NA",
+                    priority_reason="not applicable (spam)", top_terms=sp_terms, neighbours=[])
+
+    # 4. category model, priority, explanation
     s = _load()
     t = preprocess(subject, body, mode="tfidf")
     e = preprocess(subject, body, mode="embedding")
@@ -91,9 +122,15 @@ def predict(subject, body):
     is_unknown = d["category"] == "Unknown"
     d.update(
         priority="NA" if is_unknown else str(pri[0]),
-        priority_reason="not applicable (Unknown)" if is_unknown else (why[0] or "model"),    
+        priority_reason="not applicable (Unknown)" if is_unknown else (why[0] or "model"),
         top_terms=_top_terms(s, t, d["predicted"]),
         neighbours=[(s["train"].category.iloc[j], round(float(sims[j]), 2), s["train"].subject.iloc[j])
                     for j in top],
     )
+
+    # 5. grey-zone spam score: force a human look
+    if sp >= cfg_sp.get("review", 0.50):
+        d["action"] = "manual_review"
+        d["department"] = "Manual Review"
+        d["reason"] = f"possible spam ({sp:.0%}); " + str(d.get("reason") or "")
     return d

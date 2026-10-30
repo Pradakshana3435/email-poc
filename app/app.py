@@ -10,11 +10,12 @@ import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from src import quota
 from src.predict import predict
 from src.decision import load_config
 
 DB = ROOT / "data" / "results.db"
-CATS = load_config(ROOT / "config" / "pipeline.yaml")["categories"] + ["Unknown"]
+CATS = load_config(ROOT / "config" / "pipeline.yaml")["categories"] + ["Unknown", "Spam"]
 
 
 def connect():
@@ -51,6 +52,15 @@ def show_result(r):
         st.info(f"Filtered as an automated notice, no action needed ({r.get('reason')}). "
                 "It is saved and can be reviewed later.")
         return
+    if r["action"] == "junk":
+        st.info(f"Not classified: {r.get('reason')}. Please paste a real email with a subject and body.")
+        return
+    if r["action"] == "spam":
+        st.error(f"Blocked as spam ({r['confidence']:.0%} spam score). "
+                 "Quarantined, not routed to any team.")
+        st.markdown("**Words that triggered it**")
+        st.write(", ".join(t for t, _ in (r.get("top_terms") or [])) or "none found")
+        return
 
     if r["action"] == "auto_route":
         st.success(f"Auto-routed to {r['department']}")
@@ -64,7 +74,7 @@ def show_result(r):
     c2.metric("Department", r["department"])
     c3.metric("Priority", r["priority"])
     c4.metric("Confidence", "n/a" if r["category"] == "Unknown" else f"{r['confidence']:.0%}")
-    if r["category"] == "Unknown":
+    if r["category"] == "Unknown" and r.get("predicted"):
         st.caption(f"Closest category was {r['predicted']} ({r['confidence']:.0%} confident), "
                    "but the email looks unlike the training emails.")
     st.caption(f"Priority from: {r.get('priority_reason')}")
@@ -81,6 +91,9 @@ def show_result(r):
 
 
 st.set_page_config(page_title="Email triage", layout="wide")
+slot = st.sidebar.empty()
+quota.render(slot)
+
 st.title("Email classification and routing")
 tab_one, tab_batch, tab_review, tab_hist = st.tabs(
     ["Single email", "Batch (CSV)", "Review queue", "History"])
@@ -90,13 +103,17 @@ with tab_one:
     subject = st.text_input("Subject")
     body = st.text_area("Body", height=200)
     if st.button("Classify", type="primary"):
-        if not body.strip():
+        if quota.remaining() == 0:
+            st.error(quota.MSG)
+        elif not body.strip():
             st.warning("Please enter an email body.")
-            st.stop()
-        with st.spinner("Classifying..."):
-            r = predict(subject, body)
-        save(subject, body, r)
-        show_result(r)
+        else:
+            with st.spinner("Classifying..."):
+                r = predict(subject, body)
+            quota.consume(1)
+            quota.render(slot)
+            save(subject, body, r)
+            show_result(r)
 
 # --------------------------------------------------------------- batch CSV
 with tab_batch:
@@ -107,27 +124,37 @@ with tab_batch:
         missing = {"subject", "body"} - set(df.columns)
         if missing:
             st.error(f"Missing columns: {', '.join(sorted(missing))}")
-        elif st.button("Classify all emails"):
-            bar, rows = st.progress(0.0), []
-            for i, (s, b) in enumerate(zip(df["subject"], df["body"])):
-                r = predict(str(s), str(b))
-                save(str(s), str(b), r)
-                rows.append({"subject": s, "category": r.get("category"),
-                             "department": r.get("department"), "action": r.get("action"),
-                             "confidence": round(float(r.get("confidence") or 0), 3),
-                             "priority": r.get("priority")})
-                bar.progress((i + 1) / len(df))
-            out = pd.DataFrame(rows)
-            st.dataframe(out, hide_index=True)
-            buf = io.StringIO()
-            out.to_csv(buf, index=False)
-            st.download_button("Download results", buf.getvalue(), "results.csv", "text/csv")
+        elif quota.remaining() == 0:
+            st.error(quota.MSG)
+        else:
+            if len(df) > quota.remaining():
+                st.warning(f"{len(df)} rows uploaded, but only {quota.remaining()} emails "
+                           f"are left in this session. Only the first {quota.remaining()} "
+                           "rows will be classified.")
+                df = df.head(quota.remaining())
+            if st.button("Classify all emails"):
+                bar, rows = st.progress(0.0), []
+                for i, (s, b) in enumerate(zip(df["subject"], df["body"])):
+                    r = predict(str(s), str(b))
+                    quota.consume(1)
+                    save(str(s), str(b), r)
+                    rows.append({"subject": s, "category": r.get("category"),
+                                 "department": r.get("department"), "action": r.get("action"),
+                                 "confidence": round(float(r.get("confidence") or 0), 3),
+                                 "priority": r.get("priority")})
+                    bar.progress((i + 1) / len(df))
+                quota.render(slot)
+                out = pd.DataFrame(rows)
+                st.dataframe(out, hide_index=True)
+                buf = io.StringIO()
+                out.to_csv(buf, index=False)
+                st.download_button("Download results", buf.getvalue(), "results.csv", "text/csv")
 
 # ------------------------------------------------------------ review queue
 with tab_review:
     con = connect()
     q = pd.read_sql("SELECT id, ts, subject, body, category, model_guess, action, confidence, "
-                    "reason FROM results WHERE action IN ('manual_review', 'route_with_flag') "
+                    "reason FROM results WHERE action IN ('manual_review', 'route_with_flag', 'spam') "
                     "AND COALESCE(reviewed, 0) = 0 ORDER BY id DESC", con)
     con.close()
     st.write(f"{len(q)} emails waiting for review")
