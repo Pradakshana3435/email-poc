@@ -1,0 +1,10 @@
+# Pinned from the environment that built and tested this project (Python 3.11.8).
+pandas==3.0.6
+numpy==2.4.6
+scipy==1.17.1
+scikit-learn==1.9.1
+sentence-transformers==6.2.0
+joblib==1.6.0
+PyYAML==6.0.3
+streamlit==1.66.1
+matplotlib==3.11.2

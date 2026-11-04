@@ -1,0 +1,30 @@
+# Environment and caches
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+
+# Private: databases and real/personal email text
+data/*.db
+data/test_handwritten*.csv
+reports/final_test_predictions.csv
+reports/final_handwritten_predictions.csv
+
+# Intermediate files
+data/E_tr.npy
+data/E_va.npy
+
+!data/batch_demo.csv
+
+# Real spam/ham from a public corpus (license unconfirmed, contains real people's text)
+data/spam/real/
+data/spam/new_spam_*.csv
+data/spam/new_ham_*.csv
+data/raw
+data/emails_full.csv
+data/raw/
+data/emails_full.csv
+
+time_load.py
+profile_speed.py

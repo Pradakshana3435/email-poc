@@ -1,0 +1,147 @@
+"subject","body","priority"
+"Bluetooth keeps dropping in my Veloxa Z4","Phone pairs fine with the car but the Bluetooth disconnects every ten minutes or so, even in the middle of calls. Same thing happens with my wife's Pixel 7, so it doesn't look like the phone.","Medium"
+"Navigation freezing on the touchscreen","Hello,
+
+The touchscreen in my 2023 Auriga Sedan (infotainment build 4.2.1) locks up whenever turn-by-turn navigation is running. The map keeps showing my old position and nothing responds until I hold the power knob for about ten seconds. It has happened four times this week, once on the highway, which was quite alarming. Could someone tell me whether a software fix is available?
+
+Regards,
+Rohan Deshmukh","Medium"
+"Reversing camera shows black screen - Kestrel Evo","Dear Sir/Madam,
+
+I own a Kestrel Evo (2022, VIN ending 4471) and since last Thursday the reversing camera image on the centre display has been a black screen with only the guidelines drawn on top. The infotainment software is version 7.3.0 and the only change I made was accepting the over-the-air update that arrived on 14 October. I have tried switching the car off for five minutes, disconnecting the 12V battery for half an hour and cleaning the lens, but nothing changed. The parking sensors beep normally, so the problem seems limited to the video feed. The dealership says the first workshop slot is in three weeks, which is why I'm writing to you first. Is there a known issue with that update, or a reset sequence I can try myself? I'd be grateful for any guidance.
+
+Kind regards,
+Margaret O'Sullivan","Medium"
+"dashboard screen brightness resets every time","brightness on my Tessera Nova's centre screen goes back to max every time i start the car even tho i set it to low at night. its blinding when driving after dark. tried changing it in settings and in the phone app both, software says v2.8","Low"
+"Infusion pump screen going blank","The display on our Medilume IP-300 infusion pump (unit B-17) goes blank for a few seconds at random intervals. We have taken the unit out of service and tagged it, so please advise on diagnosis and repair steps.","High"
+"Patient monitors dropping off central station","Good afternoon,
+
+Two of our Corvane PM-500 bedside monitors lose their connection to the central nursing station several times a day and show 'Network Lost - Code N12'. The ward Wi-Fi works fine for everything else, and the monitors are running firmware 3.4.2. Nurses are checking these two beds manually in the meantime, which is adding to their workload. Could you tell us if there is a firmware update or a network setting we should look at?
+
+Dr. Anjali Menon
+Sunrise Community Clinic","High"
+"Re: Ultrasound console error E-4012 after software update","To whom it may concern,
+
+I am the biomedical engineer responsible for the Helix US-9 ultrasound console at Nordhaven Diagnostics (asset tag ND-0392). After software 5.1.3 was installed on 21 October, the console no longer boots into imaging mode and displays error E-4012 'Probe controller not responding'. We have reseated the probe connectors, tried all three transducers, power-cycled the unit twice and performed the recovery boot described on page 48 of the service manual, but the error comes back every time. The unit has been removed from clinical use and our second scanner is covering appointments, so no patient care is affected at the moment. The exported service log is attached to ticket reference HX-883104. We would like to know whether we should roll back to 5.0.9 or whether the controller board needs replacing. Please treat this as a priority because we have only one other scanner.
+
+Best regards,
+Thomas Brandt
+Biomedical Engineering, Nordhaven Diagnostics","High"
+"Spirometer date format changed","Hello team, our Pulsar SP-20 spirometer has shown the date as MM/DD/YY on screen and on printouts since the last firmware update, but we need DD/MM/YYYY. I couldn't find the setting anywhere in the menu. Not urgent as the readings themselves look normal.","Low"
+"URGENT: tills all stuck on connecting","all 4 tills at our Brindle St cafe stuck on 'Connecting to server' since opening and we cant take any orders!! please help asap","High"
+"Receipt printer printing garbage characters","Hi,
+
+The receipt printer connected to our SwiftTill POS terminal started printing random symbols instead of item names after we changed the paper roll yesterday. It is an Eprint TM-T20, and I have already switched it off and on and checked the cable. The screen works fine and orders go through, but customers keep getting unreadable receipts. Can you suggest what to try next?
+
+Thanks,
+Bilal","Medium"
+"Card reader error 57 on every transaction","Good morning,
+
+Since about 10 am today our PayDeck X2 terminal at the Siddiqui Sweets counter shows 'Error 57 - Reader not responding' every time a customer taps or inserts a card. Cash sales still work, but most of our customers pay by card on Sundays so we are losing a lot of business. The reader is connected by USB to the till software version 6.2.4 on Windows 10 and it worked perfectly yesterday evening. I unplugged it, tried another USB port and restarted the computer, and Device Manager now lists it as 'Unknown device'. A couple of customers were charged but their receipts did not print, which worries me, but the main thing is to get the reader working again. Could you please tell me how to reinstall the driver or whether the reader is faulty?
+
+Farah Siddiqui","High"
+"Logo cut off on receipts","Our shop logo gets clipped at the right edge on printed receipts since we switched to 58mm paper. Is there a width setting somewhere in the POS?","Low"
+"ThinkPad T14 very hot and shutting down","Hello,
+
+My Lenovo ThinkPad T14 Gen 3 becomes extremely hot during video calls and then switches itself off without warning. The fan gets loud for a few minutes before it happens. I updated the BIOS to 1.32 and the Intel graphics driver and cleaned the vents with compressed air, but there was no improvement. It is making it hard to attend meetings, so I'd appreciate any advice.
+
+Thank you,
+Kwame Mensah","Medium"
+"hp pavilion turns off when unplugged","my HP Pavilion 15 shuts down instantly the moment i pull out the charger even though battery says 80%","Medium"
+"Re: Dell XPS 15 flickering on USB-C dock monitor","Dear colleagues,
+
+Following up on my earlier message, the external monitor attached to my Dell XPS 15 9520 through the WD22TB4 dock still flickers every few minutes and sometimes goes black for about three seconds. I'm on Windows 11 22H2 (build 22621.2428) with BIOS 1.18.0 and the latest Intel and NVIDIA drivers from Dell's website. Replacing the Thunderbolt cable did not help, and connecting the monitor directly by HDMI works perfectly, so the dock looks like the culprit. I also tried disabling panel self refresh and changing the refresh rate from 60 Hz to 50 Hz without any difference. This is the setup I use all day for CAD work, so the flicker is giving me headaches. Could you tell me whether a dock firmware update exists, or if there is a known incompatibility?
+
+Regards,
+Sophie Lambert","Medium"
+"Touchpad gestures stop after sleep","Hi, the touchpad on my ASUS Zenbook 14 UX3402 stops recognising two-finger scrolling after the laptop wakes from sleep, and a restart brings it back. Minor thing but it happens daily so I wanted to check whether a driver update is out.","Low"
+"API returning 503 since 9am","Our calls to the Nimbria Storage API have been returning 503 Service Unavailable since around 09:05 UTC and our production uploads are failing. The status page still says all green.","High"
+"Desktop client stuck on 'Syncing 2,413 files'","Hello,
+
+The CloudNest desktop client (v8.1.5) on our office PCs has been stuck at 'Syncing 2,413 files' since Monday and nothing is being uploaded. Honestly this is the third time in two months, so I'm quite frustrated with the service. I signed out and in again, and now the app asks me to log in every hour, which makes things worse. Please help us find out what is causing the sync to hang.
+
+Priya Raghunathan
+Accounts, Veritas Textiles","Medium"
+"URGENT: production app unreachable on Cirrusbay hosting","Dear team,
+
+Our booking platform, hosted on a Cirrusbay Standard-4 instance in the Frankfurt region, has been unreachable since 06:40 CET this morning and customers are seeing 'ERR_CONNECTION_TIMED_OUT'. The console shows the instance as running, but SSH connections time out and the load balancer health check has been failing since the same time. I rebooted it from the console, which completed without errors, yet the instance still does not respond on ports 22 or 443. The only change over the weekend was an automatic security patch applied at 03:15. Monitoring shows CPU at 0% and no network traffic, which suggests the instance is hung. We are a travel agency and this is our only booking channel, so every hour of downtime costs us directly. The incident reference from the portal is INC-2026-771204, and we need someone to look at the host as soon as possible.
+
+Regards,
+Lars Eriksson
+Nordlys Travel","High"
+"CSV export shows timestamps in UTC only","The analytics dashboard in Quillstack loads charts slowly (around 12 seconds), and the CSV export puts all timestamps in UTC instead of our local timezone. We can work around it by converting in Excel, so it isn't blocking us, but it would be good to know if there's a setting.
+
+Thanks, Ramesh","Low"
+"cameras 3 and 4 offline","Camera 3 and 4 on the Hikari NVR have shown Offline since last night, power lights on both are on","Medium"
+"Recording stopped - HDD error on DVR","Good evening,
+
+Our Vigilant VR-8 recorder has stopped recording and shows 'HDD Error 0x0A - Disk not formatted' on the front display. We run a jewellery store and have been without CCTV recording for two days, so this is a serious concern for us. I have tried restarting the unit and checking the SATA cable, but the message returns. Please tell me if the disk needs replacing and how to format it safely.
+
+Amit Chauhan
+Chauhan Jewellers","High"
+"Remote viewing not connecting after router change","Hello,
+
+We replaced our broadband router last weekend and since then I can't view my Orbis OC-420 cameras remotely with the Orbis Live app (iOS 17.5, app version 3.9.2). The app only shows 'Device offline - code 10043' while the cameras keep recording locally. On the home Wi-Fi it connects without trouble, so it only fails over mobile data. I already created port forwards for 554 and 8000 on the new router, enabled UPnP and gave the NVR a fixed IP of 192.168.1.50. The old router was an older model and I never touched any settings on it, so I'm not sure what is different now. I travel a lot for work and need to check on the premises, so a step by step check would be very welcome. Shall I send screenshots of the router page?
+
+Cheers,
+Javier Morales","Medium"
+"Timestamp on night footage is wrong","The date overlay on our Sentinel 2K camera videos shows the wrong year only when night mode is on. Daytime footage is correct.","Low"
+"Re: Windows update fails with 0x80070002","Hi,
+
+My Acer Aspire 5 keeps failing the Windows 11 23H2 update with error 0x80070002 and rolls back after the restart. I ran the troubleshooter plus the DISM and sfc commands, but they reported no problems. There is plenty of storage left (about 90 GB). Do you know what else could be causing it?
+
+Best,
+Neha Kulkarni","Medium"
+"installer stuck on preparing","The accounting software installer sits on 'Preparing to install' for over an hour. Windows 10, nothing else running.","Medium"
+"OTA update stuck at 62% in my Solano EV","Hello,
+
+The over-the-air software update for my Solano EV (version 2024.12) has been stuck at 62% for over a day and the screen permanently says 'Update in progress, do not turn off'. I can still drive, but the climate controls on the display no longer respond. Is there a way to cancel or restart the update?
+
+Thanks,
+Takeshi Nakamura","Medium"
+"Design suite fails to install on macOS Sonoma","Hi there,
+
+I'm trying to install PixelForge Studio 12.3 on my MacBook Pro 14-inch (M2, macOS Sonoma 14.4.1) and the installer quits at around 70% with 'Installation failed - error code 1603'. I downloaded the file twice from the customer portal and the checksum matched both times. I also ran it with Gatekeeper disabled, removed the old 11.x version with its uninstaller, and restarted in safe mode, but the result is the same. Disk Utility shows no errors and I have 140 GB free. The install log repeatedly mentions 'Unable to write to /Library/Application Support/PixelForge'. I have a client project due next week, so I'd like to get this solved quickly. Could you tell me which permission I need to fix?
+
+Regards,
+Isabella Romano","Medium"
+"Wi-Fi drops every twenty minutes at the clinic","Dear IT team,
+
+The Wi-Fi in our dental clinic disconnects roughly every twenty minutes and all devices have to reconnect, including the reception PCs. We use a TP-Link Archer AX55 on firmware 1.1.4 and the problem began after the power cut last Tuesday. I tried a factory reset and moving to channel 6, but the drops continue. It is disturbing our appointment system, so could you suggest what else to check?
+
+Sincerely,
+Dr. Kavitha Rajan","Medium"
+"wifi cutting out on calls","wifi keeps cuting out whenever i join a zoom call, laptop is fine on mobile hotspot tho","Medium"
+"No internet at the whole office since 8am","Hi, none of the 35 computers in our Pune office have had internet since 8am today and the router has a red light blinking on the WAN port. We called our ISP twice and still got no real answer, which is really frustrating. Our CRM and phones run through this line, so everything is stopped. Can you help us work out whether the problem is the router or the line?
+
+Vikram Joshi","High"
+"Slow Wi-Fi in back bedroom only","Hey, my 5GHz Wi-Fi is really slow in the back bedroom (around 8 Mbps) while the living room gets over 200. I have a Netgear RAX20 router. Is there a setting I can change or do I need an extender?
+
+Cheers,
+Olivia","Low"
+"Nightly NAS backup failing for five days","Good morning,
+
+Our Synology DS920+ has failed its nightly backup to the external USB drive for the last five nights, always with 'Backup task failed (error 4)' in Hyper Backup. The NAS runs DSM 7.2.1-69057 and the 4 TB external drive shows a healthy status in Storage Manager. I re-created the backup task, confirmed there is enough free space, and checked that no schedules overlap. A drive test also finished without errors. The shared folders contain our design project files, so I'm nervous without a recent backup. Could you advise what the log entry 'Failed to write to destination: I/O error' might mean and how to proceed?
+
+Kind regards,
+Elena Petrova","Medium"
+"files stuck on sync pending on phone","hi, photos and docs on my Samsung Galaxy A54 show 'sync pending' in the DriveLoop app since 3 days. wifi is fine and ive already cleared the app cache. do i need to reinstall?? dont want to lose the files","Medium"
+"URGENT: nightly database backup failed on records system","Our clinic records system's backup job has failed twice with error code BK-2210 and we have no good backup from the past 48 hours. Please assist urgently.","High"
+"Camera photos not uploading automatically","Hello, my Android phone isn't uploading new pictures automatically to PhotoVault, though I can upload them by hand one by one. The plan has storage left, so it isn't that. Just want the auto-upload fixed, no rush.
+
+Thanks, Arjun","Low"
+"Label printer not working with macOS Sonoma","Hi,
+
+Our Zebrafield ZD-410 label printer stopped working on the new Mac Mini after we upgraded to macOS 14.5, and the print queue only shows 'Filter failed'. The driver on the vendor website is version 5.2, which says it supports macOS up to 13. Is there an updated driver or a workaround?
+
+Best wishes,
+Chidi Okafor
+Okafor Logistics","Medium"
+"Re: scanner not detected after Windows 11","Scanner still isn't detected after the Windows 11 upgrade, I installed the older driver like you said.","Medium"
+"Imaging viewer certificate error after update","Hello,
+
+After yesterday's Windows update, nobody at our radiology desk can open the MediView imaging viewer (v4.7). It shows 'Secure connection failed - certificate not trusted (0x800B010A)' before the login prompt even appears. The credentials are unchanged, so I don't think this is an account problem; it looks like the update disturbed the certificate store. Could you tell us how to restore trust for the server certificate?
+
+Regards,
+Sunil Pillai","High"
+"Android Auto won't start with my new phone","my 2021 Marlow Aero head unit says 'Phone not supported' when I plug in my new Nothing Phone (2) running Android 14 with the USB-C cable. The old phone worked fine with the same cable. Is the head unit software too old for Android 14?","Medium"

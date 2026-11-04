@@ -1,0 +1,153 @@
+email_id,category,priority,source,batch,words,pred,action,conf,pred_priority
+E0619,Job Application,Low,synthetic,job_3.csv,99,Job Application,auto_route,0.9825880735791308,Medium
+E0457,General Inquiry,Low,synthetic,general_2.csv,140,General Inquiry,auto_route,0.985985966452266,Low
+E0114,Technical Support,High,kaggle,kaggle,8,Technical Support,auto_route,0.9405020037278444,High
+E1076,Technical Support,Medium,synthetic,tech_2.csv,45,Unknown,manual_review,0.9705857590055904,NA
+E0894,Sales Inquiry,Low,synthetic,sales_1.csv,50,Sales Inquiry,auto_route,0.989390585337234,Low
+E0549,Job Application,Low,synthetic,job_1.csv,23,Job Application,auto_route,0.9994615299191538,Low
+E0415,General Inquiry,Low,synthetic,general_1.csv,57,Unknown,manual_review,0.9557631774606687,NA
+E0314,Complaint,Low,synthetic,complaint_1.csv,24,Unknown,manual_review,0.9511054000328532,NA
+E0818,Refund Request,Medium,synthetic,refund_2.csv,64,Refund Request,auto_route,0.9808605449264324,Medium
+E1032,Technical Support,Medium,synthetic,tech_1.csv,25,Technical Support,auto_route,0.9999532370397204,Medium
+E0924,Sales Inquiry,Low,synthetic,sales_2.csv,44,Sales Inquiry,auto_route,0.9998779381121004,Low
+E0940,Sales Inquiry,Low,synthetic,sales_2.csv,44,Sales Inquiry,auto_route,0.9999700796615976,Low
+E0844,Refund Request,Medium,synthetic,refund_3.csv,43,Refund Request,auto_route,0.99034193220697,Medium
+E0923,Sales Inquiry,Medium,synthetic,sales_2.csv,47,Sales Inquiry,auto_route,0.9996812603396136,Medium
+E0706,Payment Issue,Medium,synthetic,payment_2.csv,103,Payment Issue,route_with_flag,0.8406925580369129,Medium
+E0711,Payment Issue,Medium,synthetic,payment_2.csv,58,Payment Issue,auto_route,0.9999633609463902,Medium
+E1038,Technical Support,Medium,synthetic,tech_2.csv,66,Technical Support,auto_route,0.9993018169568914,Medium
+E0437,General Inquiry,Medium,synthetic,general_2.csv,28,General Inquiry,auto_route,0.9986586979579511,Medium
+E0580,Job Application,Low,synthetic,job_2.csv,26,Job Application,auto_route,0.8799101776714269,Low
+E0243,Account & Login,Medium,synthetic,account_3.csv,120,Account & Login,auto_route,0.928756966446976,Medium
+E0853,Refund Request,Medium,synthetic,refund_3.csv,31,Refund Request,auto_route,0.9999996926981496,Medium
+E0817,Refund Request,Medium,synthetic,refund_2.csv,40,Refund Request,auto_route,0.9816546698645152,Medium
+E0910,Sales Inquiry,Low,synthetic,sales_1.csv,24,Sales Inquiry,auto_route,0.994850495340134,Low
+E0947,Sales Inquiry,Low,synthetic,sales_2.csv,14,Sales Inquiry,auto_route,0.9908254241450618,Low
+E0452,General Inquiry,Medium,synthetic,general_2.csv,149,General Inquiry,auto_route,0.9923637995117784,Medium
+E0251,Account & Login,High,synthetic,account_3.csv,128,Account & Login,auto_route,0.999976125198808,High
+E0214,Account & Login,Low,synthetic,account_2.csv,34,Account & Login,auto_route,0.9999988152962596,Low
+E0632,Job Application,Low,synthetic,job_3.csv,52,Job Application,auto_route,0.9991295854419374,Low
+E0166,Account & Login,High,synthetic,account_1.csv,18,Account & Login,auto_route,0.9974297344259534,High
+E0896,Sales Inquiry,Low,synthetic,sales_1.csv,13,Sales Inquiry,auto_route,0.9999456809978662,Low
+E0563,Job Application,Medium,synthetic,job_2.csv,129,Job Application,auto_route,0.9986982971276928,Low
+E0213,Account & Login,Low,synthetic,account_2.csv,14,Account & Login,auto_route,0.9999994129804024,Low
+E0838,Refund Request,Medium,synthetic,refund_3.csv,20,Refund Request,auto_route,0.9994466939008968,Medium
+E0778,Refund Request,Medium,synthetic,refund_1.csv,41,Refund Request,auto_route,0.9850016951965728,High
+E0062,Technical Support,Low,kaggle,kaggle,41,Technical Support,auto_route,0.9509304976477284,High
+E0786,Refund Request,Medium,synthetic,refund_1.csv,69,Refund Request,auto_route,0.9734268248611928,High
+E0766,Refund Request,Medium,synthetic,refund_1.csv,52,Refund Request,auto_route,0.9982026373313132,Medium
+E1012,Technical Support,Low,synthetic,tech_1.csv,32,Unknown,manual_review,0.9981855164815252,NA
+E0684,Payment Issue,Medium,synthetic,payment_2.csv,110,Payment Issue,auto_route,0.9999887035472662,High
+E0575,Job Application,Low,synthetic,job_2.csv,135,Job Application,auto_route,0.9999345051269952,Low
+E0892,Sales Inquiry,Medium,synthetic,sales_1.csv,19,Sales Inquiry,auto_route,0.9145993807016088,Low
+E0843,Refund Request,Medium,synthetic,refund_3.csv,27,Refund Request,auto_route,0.999862892785612,Medium
+E0185,Account & Login,Medium,synthetic,account_1.csv,31,Account & Login,auto_route,0.9999388658487404,High
+E0953,Sales Inquiry,Medium,synthetic,sales_2.csv,98,Sales Inquiry,auto_route,0.9992088689074512,Medium
+E0435,General Inquiry,Low,synthetic,general_1.csv,61,General Inquiry,auto_route,0.877988466305686,Low
+E0291,Complaint,Medium,synthetic,complaint_1.csv,78,Account & Login,route_with_flag,0.8375732435414028,Medium
+E0253,Account & Login,Low,synthetic,account_3.csv,16,Account & Login,auto_route,0.9999859568141048,Low
+E0302,Complaint,Medium,synthetic,complaint_1.csv,44,Complaint,auto_route,0.9509106242297326,Medium
+E0677,Payment Issue,High,synthetic,payment_2.csv,41,Payment Issue,auto_route,0.9998965216141118,High
+E0208,Account & Login,High,synthetic,account_2.csv,44,Account & Login,auto_route,0.9996159910918876,High
+E0438,General Inquiry,Low,synthetic,general_2.csv,44,General Inquiry,route_with_flag,0.67280434836408,Low
+E0593,Job Application,Medium,synthetic,job_2.csv,47,Job Application,auto_route,0.999396694245558,Low
+E0490,General Inquiry,Low,synthetic,general_3.csv,85,Sales Inquiry,route_with_flag,0.8082449833187222,Low
+E0538,Job Application,Medium,synthetic,job_1.csv,66,Job Application,auto_route,0.9945586961590374,Low
+E1007,Technical Support,Medium,synthetic,tech_1.csv,25,Technical Support,auto_route,0.9923829308454348,Medium
+E0708,Payment Issue,Medium,synthetic,payment_2.csv,58,Payment Issue,auto_route,0.999915568987806,Medium
+E0282,Complaint,Medium,synthetic,complaint_1.csv,31,Complaint,auto_route,0.9917304818919817,Medium
+E1110,Technical Support,Medium,synthetic,tech_3.csv,28,Technical Support,auto_route,0.9991366928736192,Medium
+E0383,Complaint,High,synthetic,complaint_3.csv,117,Complaint,auto_route,0.9961995371972288,High
+E0316,Complaint,Low,synthetic,complaint_1.csv,54,Refund Request,route_with_flag,0.6266510426175176,Medium
+E0507,General Inquiry,Low,synthetic,general_3.csv,101,General Inquiry,auto_route,0.9930833941238654,Medium
+E0319,Complaint,Medium,synthetic,complaint_2.csv,77,Complaint,auto_route,0.9979712963591044,High
+E0553,Job Application,Low,synthetic,job_1.csv,22,Job Application,auto_route,0.9975058478381796,Low
+E0703,Payment Issue,High,synthetic,payment_2.csv,104,Payment Issue,auto_route,0.9975942974409752,High
+E0200,Account & Login,Medium,synthetic,account_2.csv,23,Account & Login,auto_route,0.999869405698076,Medium
+E0358,Complaint,High,synthetic,complaint_3.csv,52,Complaint,auto_route,0.8953752781623977,High
+E0104,Payment Issue,Medium,kaggle,kaggle,42,Payment Issue,auto_route,0.9999604166770072,High
+E0757,Refund Request,Medium,synthetic,refund_1.csv,33,Refund Request,route_with_flag,0.7446215789641194,High
+E0481,General Inquiry,Low,synthetic,general_3.csv,51,General Inquiry,auto_route,0.978591410537406,Medium
+E0864,Refund Request,Medium,synthetic,refund_3.csv,29,Refund Request,auto_route,0.9945237351659864,Medium
+E0483,General Inquiry,Low,synthetic,general_3.csv,46,General Inquiry,auto_route,0.9954199362456168,Low
+E0629,Job Application,Low,synthetic,job_3.csv,47,Job Application,auto_route,0.9975009703384524,Low
+E1071,Technical Support,High,synthetic,tech_2.csv,27,Unknown,manual_review,0.9327390129116414,NA
+E0658,Payment Issue,High,synthetic,payment_1.csv,18,Payment Issue,route_with_flag,0.6732465662548848,High
+E1035,Technical Support,Medium,synthetic,tech_1.csv,32,Unknown,manual_review,0.9970555121993888,NA
+E0505,General Inquiry,Medium,synthetic,general_3.csv,41,General Inquiry,auto_route,0.9940708143661624,Medium
+E0555,Job Application,Medium,synthetic,job_1.csv,78,Job Application,auto_route,0.8819235874542756,Medium
+E0921,Sales Inquiry,Low,synthetic,sales_2.csv,102,Sales Inquiry,auto_route,0.9944548417911816,Medium
+E0596,Job Application,Medium,synthetic,job_2.csv,126,Job Application,auto_route,0.999989247635519,Low
+E0098,Technical Support,High,kaggle,kaggle,7,Technical Support,auto_route,0.9983366099718516,High
+E0639,Payment Issue,High,synthetic,payment_1.csv,22,Payment Issue,auto_route,0.9964334277904726,High
+E0309,Complaint,Low,synthetic,complaint_1.csv,32,Complaint,auto_route,0.9982250400230376,Low
+E0338,Complaint,Medium,synthetic,complaint_2.csv,82,Complaint,route_with_flag,0.7199377447532584,Medium
+E0841,Refund Request,Medium,synthetic,refund_3.csv,30,Refund Request,auto_route,0.9994964266936004,Medium
+E0751,Payment Issue,Medium,synthetic,payment_3.csv,53,Refund Request,auto_route,0.9985063669014744,Medium
+E0540,Job Application,Low,synthetic,job_1.csv,86,Job Application,auto_route,0.9992211837383548,Low
+E0576,Job Application,Low,synthetic,job_2.csv,56,Job Application,route_with_flag,0.7784301065859912,Low
+E0245,Account & Login,High,synthetic,account_3.csv,15,Account & Login,auto_route,0.9987648404826872,High
+E0004,Technical Support,Medium,kaggle,kaggle,46,Technical Support,auto_route,0.9738926352684114,High
+E1026,Technical Support,High,synthetic,tech_1.csv,48,Technical Support,route_with_flag,0.6435573555990203,Medium
+E0874,Refund Request,Medium,synthetic,refund_3.csv,37,Refund Request,auto_route,0.9473218258220988,Medium
+E0324,Complaint,Low,synthetic,complaint_2.csv,30,Unknown,manual_review,0.7004942426382241,NA
+E0267,Account & Login,Medium,synthetic,account_3.csv,41,Unknown,manual_review,0.5055947722422369,NA
+E0747,Payment Issue,Medium,synthetic,payment_3.csv,44,Payment Issue,auto_route,0.999877981645676,Medium
+E0748,Payment Issue,Medium,synthetic,payment_3.csv,37,Payment Issue,auto_route,0.9095985294239888,Medium
+E0728,Payment Issue,Low,synthetic,payment_3.csv,29,Payment Issue,auto_route,0.9979345138678896,Medium
+E0976,Sales Inquiry,Medium,synthetic,sales_3.csv,33,Sales Inquiry,auto_route,0.9998660041020552,Medium
+E0901,Sales Inquiry,Medium,synthetic,sales_1.csv,109,Sales Inquiry,auto_route,0.993524425176038,Medium
+E0450,General Inquiry,Low,synthetic,general_2.csv,120,Unknown,manual_review,0.5022682168450738,NA
+E0854,Refund Request,Medium,synthetic,refund_3.csv,27,Refund Request,auto_route,0.9997317480887172,Medium
+E0799,Refund Request,High,synthetic,refund_2.csv,23,Refund Request,auto_route,0.9984550498321144,Medium
+E0221,Account & Login,Medium,synthetic,account_2.csv,19,Account & Login,auto_route,0.9999919259531616,Medium
+E1097,Technical Support,High,synthetic,tech_3.csv,66,Technical Support,auto_route,0.9991126349744004,High
+E0503,General Inquiry,Low,synthetic,general_3.csv,14,General Inquiry,auto_route,0.9850137563258358,Low
+E0928,Sales Inquiry,Medium,synthetic,sales_2.csv,104,Sales Inquiry,auto_route,0.994568382084403,Medium
+E0715,Payment Issue,Low,synthetic,payment_2.csv,38,Payment Issue,auto_route,0.999899465463897,Low
+E0498,General Inquiry,Low,synthetic,general_3.csv,45,General Inquiry,auto_route,0.99947446495641,Low
+E0903,Sales Inquiry,Medium,synthetic,sales_1.csv,62,Sales Inquiry,auto_route,0.9975110241822318,Medium
+E0568,Job Application,Low,synthetic,job_2.csv,122,Job Application,auto_route,0.9999881019095078,Low
+E0547,Job Application,Low,synthetic,job_1.csv,62,Job Application,auto_route,0.9999996995851892,Low
+E0974,Sales Inquiry,Low,synthetic,sales_3.csv,38,Sales Inquiry,auto_route,0.983399442888382,Medium
+E0028,Technical Support,Medium,kaggle,kaggle,45,General Inquiry,route_with_flag,0.8240042509777684,Medium
+E0455,General Inquiry,Low,synthetic,general_2.csv,37,General Inquiry,auto_route,0.9692635645279878,Low
+E0432,General Inquiry,Low,synthetic,general_1.csv,36,Unknown,manual_review,0.9998739225290552,NA
+E0578,Job Application,Low,synthetic,job_2.csv,19,Job Application,route_with_flag,0.7113389463741459,Low
+E0985,Sales Inquiry,Low,synthetic,sales_3.csv,13,Unknown,manual_review,0.9936276497725368,NA
+E1111,Technical Support,Low,synthetic,tech_3.csv,26,Technical Support,auto_route,0.999503496648665,Medium
+E0317,Complaint,Medium,synthetic,complaint_2.csv,23,Unknown,manual_review,0.5173314321526583,NA
+E0513,General Inquiry,Low,synthetic,general_3.csv,51,Sales Inquiry,auto_route,0.9967733037839912,Low
+E0163,Account & Login,Medium,synthetic,account_1.csv,27,Account & Login,auto_route,0.9999613342679892,Medium
+E0964,Sales Inquiry,Low,synthetic,sales_3.csv,36,Unknown,manual_review,0.9603281824845996,NA
+E0742,Payment Issue,High,synthetic,payment_3.csv,33,Payment Issue,auto_route,0.9996756820866908,High
+E0643,Payment Issue,Medium,synthetic,payment_1.csv,17,Payment Issue,auto_route,0.9997768599045138,Medium
+E0297,Complaint,High,synthetic,complaint_1.csv,85,Complaint,auto_route,0.999333755725912,High
+E0695,Payment Issue,Medium,synthetic,payment_2.csv,58,Payment Issue,auto_route,0.9999746048393492,High
+E0795,Refund Request,Low,synthetic,refund_1.csv,47,Unknown,manual_review,0.505734916624939,NA
+E0207,Account & Login,High,synthetic,account_2.csv,133,Account & Login,auto_route,0.9984374266387652,High
+E0898,Sales Inquiry,Medium,synthetic,sales_1.csv,111,Sales Inquiry,auto_route,0.9998071531302912,High
+E0637,Payment Issue,High,synthetic,payment_1.csv,23,Payment Issue,auto_route,0.9995083045664362,High
+E0349,Complaint,Low,synthetic,complaint_2.csv,44,Complaint,auto_route,0.9927043204894452,Medium
+E0228,Account & Login,Medium,synthetic,account_2.csv,52,Account & Login,auto_route,0.9999972715280592,High
+E0239,Account & Login,Medium,synthetic,account_3.csv,114,Account & Login,auto_route,0.9999759570188582,Medium
+E1022,Technical Support,High,synthetic,tech_1.csv,126,Technical Support,auto_route,0.9999781846556652,Medium
+E0172,Account & Login,Low,synthetic,account_1.csv,37,Account & Login,auto_route,0.997752414650965,Low
+E0870,Refund Request,Medium,synthetic,refund_3.csv,57,Refund Request,auto_route,0.9975288731796104,Medium
+E0329,Complaint,High,synthetic,complaint_2.csv,135,Complaint,auto_route,0.9990919110141818,High
+E1102,Technical Support,Medium,synthetic,tech_3.csv,62,Unknown,manual_review,0.9989096313190644,NA
+E1058,Technical Support,High,synthetic,tech_2.csv,77,Technical Support,auto_route,0.999781372477384,Medium
+E0244,Account & Login,Medium,synthetic,account_3.csv,32,Unknown,manual_review,0.581355301662328,NA
+E0356,Complaint,High,synthetic,complaint_2.csv,80,Complaint,auto_route,0.989214303388284,Low
+E0803,Refund Request,Medium,synthetic,refund_2.csv,19,Refund Request,auto_route,0.9999961350349496,High
+E0366,Complaint,High,synthetic,complaint_3.csv,19,Unknown,manual_review,0.925621734583996,NA
+E0825,Refund Request,Low,synthetic,refund_2.csv,34,Refund Request,auto_route,0.996884213119613,Medium
+E0425,General Inquiry,High,synthetic,general_1.csv,65,Unknown,manual_review,0.9979265655761368,NA
+E0724,Payment Issue,Medium,synthetic,payment_3.csv,44,Payment Issue,auto_route,0.999971681368334,Medium
+E1100,Technical Support,High,synthetic,tech_3.csv,121,Technical Support,auto_route,0.996526665533226,Medium
+E0008,Refund Request,Medium,kaggle,kaggle,46,Refund Request,auto_route,0.9944434212474964,Medium
+E0412,General Inquiry,Low,synthetic,general_1.csv,19,Unknown,manual_review,0.761770809560387,NA
+E0557,Job Application,Low,synthetic,job_2.csv,50,Job Application,auto_route,0.9999310614054624,Low
+E0284,Complaint,High,synthetic,complaint_1.csv,93,Complaint,auto_route,0.9920961236512874,High
+E0720,Payment Issue,Medium,synthetic,payment_3.csv,15,Payment Issue,auto_route,0.8861817215681201,High
+E1106,Technical Support,Medium,synthetic,tech_3.csv,81,Technical Support,auto_route,0.9977149092608236,Medium

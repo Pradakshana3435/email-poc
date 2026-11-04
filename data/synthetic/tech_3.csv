@@ -1,0 +1,113 @@
+"subject","body","priority"
+"touchscreen freezing randomly","hi, my veloxa aria screen freezes while im driving, only fix is turning the car off n on again. happens almost every day now pls help","Medium"
+"Bluetooth pairing failed - Norland T5","Hello,
+
+My phone refuses to pair with the head unit in my Norland T5. Each attempt ends with 'Pairing failed (0x32)', even after I deleted every saved device on both sides. The phone is a Galaxy A54 running Android 14. Please let me know what else I can try.
+
+Regards,
+Ananya Rao","Medium"
+"Navigation shows grey map, map update fails at 63%","To whom it may concern,
+
+I own a 2023 Kestrel Ranger EV (VIN ending 4471) with infotainment firmware 4.2.1. Since 12 October the navigation screen shows a grey map with only a blue arrow and no road names, and the guidance says 'GPS signal lost' even in open areas. I tried a soft reset by holding the power knob for 20 seconds, which fixed it for about a day. I also downloaded map pack 2026.3 onto a USB stick, but the update halts at 63% with error NAV-1107. The dealership said they have no diagnostic tool free until next week and told me to write to you. I have a long drive planned on 2 November, so I would like this sorted before then. Is there a firmware patch available?
+
+Marcus Lindqvist","Medium"
+"carplay audio cutting out","Zento Hatch 2021 here. carplay audio drops for a sec or 2 every few minutes, nothing serious but its annoying. any fix??","Low"
+"Infusion pump showing E-47","Good morning,
+
+One of our MediPulse VP-300 infusion pumps (asset tag LCH-0932) is showing error E-47 on its screen and will not accept a new program. The unit has been removed from service and tagged, and we are using a spare. A restart and a battery reseat did not clear the message. Please advise how to diagnose this or whether a service visit is needed.
+
+Priyanka Menon
+Ward 4B, Lakeside Community Hospital","High"
+"monitors losing network","cardiosense m12 bedside monitors keep dropping off the central station, 3 of them since this morning. we have pulled them from use n switched to spares, need someone to look at the network module asap","High"
+"HemaCore 500 not communicating with host PC after update","Dear Support Team,
+
+I hope this email finds you well. Our haematology lab's HemaCore 500 analyser (serial HC5-20871, software v3.8.2) stopped communicating with the host PC on 14 Oct, right after a Windows security update. The host software now shows 'Instrument not found (COM3)' at start-up and the analyser screen displays 'Host link timeout'. We have replaced the USB cable, tried two other ports, and reinstalled instrument driver 2.1.0 twice, but the error remains. Device Manager lists the unit with a yellow warning icon. The analyser has been taken offline and samples are being routed to our second analyser, which is already near capacity. Could an engineer please contact us today with a fix or a rollback procedure? We can send the log files if that helps.
+
+Dr. Imran Qureshi
+Laboratory Manager, Northbridge Diagnostics","High"
+"oximeter app wont sync","hey, my OxiTrack Go oximeter turns on n shows readings fine but the app on my iPhone 13 (iOS 17.6) says 'device not found' when i try to sync history. ive reinstalled the app twice and toggled bluetooth. not urgent just want the history to sync","Low"
+"POS DEAD!!!","pos terminal wont start since we opened, stuck on black screen with just the logo. cant bill anything n theres a queue outside. call me asap - Ravi, Sai Sweets Mylapore","High"
+"Receipt printer printing blank","Hi,
+
+The receipt printer at counter 2 (TillMate TP-80) feeds paper normally but everything comes out blank. We changed the roll twice in case it was loaded wrong and cleaned the print head. The other counter with the same model works fine.
+
+Thanks,
+Grace Mwangi, Kilimani Hardware","Medium"
+"card reader going offline during payments","Dear team, our card reader keeps showing 'Error 05 - Reader offline' halfway through a payment and then the sale has to be redone. The Bluetooth link to the tablet drops even when the reader is right next to it. Reader is a PayNest R2 and the app is v4.7. It happens maybe 10 times a day and customers are getting irritated, so we need the connection fixed.","Medium"
+"Register crashes after v6.1 update","Urgent!! None of our five tills at Shreeji Spice Kitchen can open a new order since the ServeRight POS update to v6.1 last night. The app launches, shows the table map and then closes with 'Unexpected error 0xC0000005'. We tried restarting the tablets, clearing the cache and reinstalling, same result. Our tablets are Tab M10s on Android 12. One card payment went through right before it crashed and we are not sure it was recorded, so please check the transaction log as well. We are taking orders on paper now but the Sunday lunch rush starts at 12. Can you roll us back to 6.0.4 or send a fix? Reach me on this email or the shop landline.
+
+Sunita Shetty","High"
+"laptop very hot","hi. my aurex slim 14 gets super hot n the fan is loud like a jet even when i just have chrome open. only 8 months old. thx","Medium"
+"Random shutdowns - Nivo Book 15","Hi support,
+
+My Nivo Book 15 (NB15-4022) shuts down suddenly with no warning, usually when the battery says around 40%. It runs Windows 11 23H2 with BIOS 1.12. The battery report looks normal and the built-in hardware diagnostic passed. It happens 2 or 3 times a day and I lose unsaved work.
+
+Sanjay Iyer","Medium"
+"dock not detecting 2nd monitor","Kelvara Pro 13 with the KD-200 USB-C dock, second monitor goes black after waking from sleep and only comes back if I unplug the dock. Using Win 11. Is there a driver update or a setting I'm missing","Low"
+"touchpad stopped after update","hello, after the windows update last night my touchpad scroll and click are dead on the Tessara X1. reinstalled driver 2.4.1 no luck. mouse works fine thx","Medium"
+"API 503 errors - all endpoints","Since 09:40 UTC every call to your orders API returns 503, our whole checkout is down. Org ref NB-20418, region eu-west. Please escalate.","High"
+"Sync stuck on Mac","Dear StratoDrive team,
+
+The StratoDrive desktop app on my MacBook (macOS Sonoma 14.5, client 5.9.2) has been stuck on 'Syncing 1 of 2,314 items' since Monday. Files edited on the web are not showing up on my laptop and the other way around. I tried pausing and resuming and signing out and back in, with no change. Could you help me find out why?
+
+- Elena Petrova","Medium"
+"Ledgerly down for everyone in our office","To the Ledgerly team,
+
+Since about 08:15 IST this morning none of our 300 staff can open Ledgerly. The web app shows a white page and then 'Error 502 Bad Gateway', and the mobile app says 'Unable to reach server (code NET-5)'. Your status page still says all systems operational, which is clearly not the case. We tried different browsers, a mobile hotspot and two different offices, so it is not on our side. Month-end payroll runs are scheduled for today and are blocked by this. Our tenant is hosted in the ap-south-1 region, tenant ID LGR-77310. Please confirm if there is a known incident and give us an ETA.
+
+Kind regards,
+Rohan Mehta
+IT Head, Dhanvi Textiles","High"
+"login page keeps looping back","Hello support, every time I sign in to the Cloudly workspace the page flashes and sends me back to the login screen, and Chrome shows ERR_TOO_MANY_REDIRECTS. Its not a password problem, the password is accepted. Same thing in Edge and in an incognito window, but my colleague can log in fine from the same network. I already cleared cookies. - Tomasz","Medium"
+"4 cameras offline at warehouse","Greetings,
+
+4 of 16 cameras at our Pune warehouse went offline last night around 11pm and the NVR shows 'Video Loss' for channels 5, 6, 9 and 10. Power to the cameras seems ok since the IR lights are on. We rebooted the NVR but nothing changed. As this covers the loading bay and the back gate, we need it working asap.
+
+Karan Deshmukh, Deshmukh Logistics","High"
+"not recording","cctv not recording since sunday, hdd light on the vigilo n8 is off n it says 'no disk' on screen. shop has no cover now pls help","High"
+"remote view very slow","Hi guys, remote view on the SecureEye app takes like 30 secs to load my cameras. Was working fine until last month. Home wifi speed is fine, I tested it. Using iPhone 12.","Low"
+"HDD 2 abnormal on DVR - recordings missing","Dear Sir/Madam,
+
+The Sentra SD-1604 DVR at our jewellery showroom has shown 'HDD 2 abnormal' on the live screen since 19 October, and there are gaps in the recordings between 2 pm and 6 pm on several days. Firmware is V4.1.3 build 220914. We checked the SATA cables and re-seated both drives, and the disk menu now lists HDD 2 as 'unformatted' with 0 GB capacity. I am hesitant to format it in case the footage on it is still needed. The unit is about 3 years old and has run continuously. Kindly advise whether this is a drive failure or a settings issue and how to safely recover what is on it.
+
+Thanks and regards,
+Meenakshi Sundaram
+Sri Lakshmi Jewellers","High"
+"update stuck at 98%","PixelForge Studio update to 12.4 has been stuck at 98% for 2 hours, should I force close it?","Low"
+"Mathwise 7 install fails on lab PCs","Good afternoon,
+
+I'm the IT admin at Greenfield Public School and I'm trying to deploy Mathwise 7.0 to 25 lab PCs running Windows 10 22H2. The installer ends with error 0x80070643 on about half of them, while the rest install without problems. The failing ones all have .NET Framework 4.8 and I have tried running as administrator. Any idea what is different?","Medium"
+"TaxEase install failing on new Mac","Hey, hope your week is going better than mine, we just moved flats and the internet guy is only coming on Thursday, anyway. I bought a new MacBook Air M3 last week and I'm trying to install TaxEase 2026, the one I used last year on my old laptop. The installer downloads fine but at the end says 'Installation failed: package is damaged and can't be opened', error code TE-1019. I downloaded it 3 times from your site and also tried over my phone hotspot in case the home wifi was corrupting the file, same message. macOS is Sequoia 15.1. My filing deadline is 31 Oct so I'd like to get this going soon.
+
+Cheers,
+Dev","Medium"
+"Lumo speaker update fails","The firmware update on my Lumo smart speaker fails with error L-204 every single time.","Low"
+"wifi drops every 10 mins","hello, my kelnet ax3000 router wifi disconnects every 10 mins or so on all devices then comes back by itself. restarted it n updated firmware to 2.0.8 bcoz thought that would fix it but no. wired connection is fine btw","Medium"
+"Intermittent disconnections in office","Hi there,
+
+Our office internet has been dropping several times a day for about two weeks, mostly the Wi-Fi but the wired desktops freeze up too. Our ISP keeps insisting the line is fine and blames our equipment, which has honestly been frustrating. We run a Netora NG-48 switch and two access points on firmware 3.2.1. The logs show repeated 'DHCP lease failed' messages right before each drop. Can you help us work out where the fault is?
+
+Best,
+Chloe Bennett","Medium"
+"printer offline after router change","we changed our router yesterday and now the Brava 2200 printer shows offline on all pcs, wifi light on printer is blinking. how do i reconnect","Low"
+"Branch VPN tunnels dropping every 15 minutes","Dear Infrastructure Support,
+
+Since Friday evening the site-to-site VPN tunnels between our head office and 12 branches have been dropping roughly every 15 minutes. Core banking sessions at the branches are cut off each time, which forces tellers to log in again and in some cases lose half-entered transactions. The firewall is a FortiLine 90F running 7.2.4, and the logs show 'IKE phase 2 negotiation failed' and 'DPD timeout' at each drop. We have confirmed the ISP links show no packet loss, and we already rebooted the firewall and re-created the phase 2 selectors on two of the tunnels. Nothing changed in our configuration before the issue began, according to our change log. This is affecting live branch operations, so we need an engineer on a call as early as possible.
+
+Suresh Narayanan
+Metro Cooperative Bank, IT Infrastructure","High"
+"NAS backup job failing","Hi team, our nightly backup on the Datanest DS-420 NAS fails with error 0x4C since the firmware update to 6.3. On top of that the admin console now rejects the admin login after the update, though nothing about the credentials has changed, so I can't even view the job logs properly. Could this be a bug in the new firmware?","Medium"
+"folder shows 0 bytes help","all my thesis files in the sync folder show 0 bytes after the app crashed mid sync!! is there any way to get them back, submission is friday","Medium"
+"contacts not syncing with Outlook","Contacts added on my iPhone aren't syncing to Outlook on my laptop anymore, but the calendar still works. It started after I updated iOS to 17.7.","Low"
+"External SSD showing as RAW drive","Good evening,
+
+I'm a freelance photographer and my 1TB Nexa Portable SSD (model NX-T7) now shows as a RAW drive on Windows 11 after I accidentally pulled it out mid-transfer last Tuesday. Windows asks me to format it whenever I plug it in, which I have not done. I ran chkdsk /f and it stopped with 'Cannot open volume for direct access'. Disk Management recognises the drive with the right size but the file system is blank. I also tried it on a Mac and a different USB port with the same result. It holds two weddings' worth of photos that are not backed up anywhere else. Is there a safe way to recover the data?
+
+Thanks,
+Beatriz Santos","Medium"
+"PlanDraft 2019 crashes on Windows 11 24H2","Our CAD software PlanDraft 2019 (build 19.0.3) won't launch anymore after upgrading the workstations to Windows 11 24H2. It crashes straight away and the event log blames ntdll.dll. We need to keep that version for older project files, so is there a compatibility fix or patch available?
+
+Henrik Johansson","Medium"
+"scanner not working on new macbook","my Scanrite S200 scanner dont work on my new macbook, the driver on your site is only for older macOS. any workaround?","Low"
+"Run-time error 1004 in billing add-in","Since the latest Excel 365 update (version 2409) the PayLink billing add-in throws 'Run-time error 1004' whenever we try to generate invoices, and the payment gateway tab stays blank. Add-in version is 3.1.0. Disabling and re-enabling it didn't help. We think it is a compatibility issue with the new Office build.","Medium"
+"Zigbee sensors won't pair with hub","Hello team, I bought some new door sensors (Zigsense ZS-10) and my Homenest Hub 2 won't detect them in pairing mode, it just times out after 60 seconds. Hub firmware is 2.8.1. My older sensors work fine. Wondering if they are not compatible?","Low"
